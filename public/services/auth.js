@@ -72,19 +72,6 @@ angular.module('MyApp')
                             duration: 3
                         });
                     });
-                },
-                remove: function() {
-                    return $http.get('/api/remove').success(function() {
-
-                        $location.path('/');
-
-                        $alert({
-                            content: 'Removed MF!',
-                            placement: 'top-right',
-                            type: 'info',
-                            duration: 10
-                        });
-                    });
                 }
             };
         }]);

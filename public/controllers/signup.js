@@ -1,10 +1,6 @@
 angular.module('MyApp')
     .controller('SignupCtrl', ['$scope', 'Auth', function($scope, Auth) {
 
-
-        console.log($scope);
-
-
         $scope.signup = function() {
             Auth.signup({
                 username: $scope.username,

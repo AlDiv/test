@@ -1,0 +1,89 @@
+<div class="container">
+    <br/>
+
+    <div class="row">
+        <div class="center-form panel">
+            <form method="post" ng-submit="edit()" name="editForm">
+                <div class="panel-body">
+                    <h2 class="text-center">Sign up</h2>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-success' : editForm.username.$valid && editForm.username.$dirty, 'has-error' : editForm.username.$invalid && editForm.username.$dirty }">
+                        <input class="form-control input-lg" type="text" id="username" name="username" ng-model="username" placeholder="Username" required autofocus>
+
+                        <div class="help-block text-danger" ng-if="editForm.username.$dirty"
+                             ng-messages="editForm.username.$error">
+                            <div ng-message="required">Username is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-success' : editForm.password.$valid && editForm.password.$dirty, 'has-error' : editForm.password.$invalid && editForm.password.$dirty }">
+                        <input class="form-control input-lg" type="text" name="password"
+                               placeholder="Password">
+
+                        <div class="help-block text-danger"
+                             ng-if="editForm.password.$dirty"
+                             ng-messages="editForm.password.$error">
+                            <div ng-message="required">Password is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-success' : editForm.email.$valid && editForm.email.$dirty, 'has-error' : editForm.email.$invalid && editForm.email.$dirty }">
+                        <input class="form-control input-lg" type="email" id="email" name="email" ng-model="email" placeholder="Email" required autofocus>
+
+                        <div class="help-block text-danger" ng-if="editForm.email.$dirty"
+                             ng-messages="editForm.email.$error">
+                            <div ng-message="required">Your email address is required.</div>
+                            <div ng-message="email">Your email address is invalid.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-success' : editForm.firstName.$valid && editForm.firstName.$dirty, 'has-error' : editForm.firstName.$invalid && editForm.firstName.$dirty }">
+                        <input class="form-control input-lg" type="text" id="firstName" name="firstName" ng-model="firstName" placeholder="First Name" required autofocus>
+
+                        <div class="help-block text-danger" ng-if="editForm.firstName.$dirty"
+                             ng-messages="editForm.firstName.$error">
+                            <div ng-message="required">First Name address is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-success' : editForm.lastName.$valid && editForm.lastName.$dirty, 'has-error' : editForm.lastName.$invalid && editForm.lastName.$dirty }">
+                        <input class="form-control input-lg" type="text" id="lastName" name="lastName" ng-model="lastName" placeholder="Last Name" required autofocus>
+
+                        <div class="help-block text-danger" ng-if="editForm.lastName.$dirty"
+                             ng-messages="editForm.lastName.$error">
+                            <div ng-message="required">Last Name address is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-success' : editForm.type.$valid && editForm.type.$dirty, 'has-error' : editForm.type.$invalid && editForm.type.$dirty }">
+                        <!--<select class="form-control input-lg" id="type" required autofocus-->
+                                <!--ng-model="type"-->
+                                <!--ng-options="option.name for option in options"-->
+                                <!-- > -->
+                        <!--</select>-->
+
+                        <input class="form-control input-lg" type="text" name="type" ng-model="type" id="type">
+
+                        <div class="help-block text-danger" ng-if="editForm.type.$dirty"
+                             ng-messages="editForm.type.$error">
+                            <div ng-message="required">Last Name address is required.</div>
+                        </div>
+                    </div>
+
+
+                    <input class="form-control input-lg" type="hidden" id="id" name="id" ng-model="_id" required>
+
+                    <button type="submit" ng-disabled="editForm.$invalid"
+                            class="btn btn-lg btn-block btn-primary">Save Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

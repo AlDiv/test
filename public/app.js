@@ -14,9 +14,9 @@ angular.module('MyApp', ['ngCookies', 'ngResource', 'ngMessages', 'ngRoute', 'mg
                 templateUrl: 'views/list.html',
                 controller: 'UserCtrl'
             })
-            .when('/edit/:id', {
-                templateUrl: 'views/signup.html',
-                controller: 'SignupCtrl'
+            .when('/edit/:id*', {
+                templateUrl: 'views/edit.html',
+                controller: 'EditCtrl'
             })
             .when('/login', {
                 templateUrl: 'views/login.html',

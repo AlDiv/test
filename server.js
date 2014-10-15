@@ -58,9 +58,7 @@ mongoose.connect('mongodb://localhost/myapp');
 
 app.post('/api/signup', function(req, res, next) {
 
-    /*ToDo: update if has _id*/
-
-    var type = 1;
+    var type = 0;
 
     var user = new UserDb({
         username: req.body.username,
@@ -77,22 +75,32 @@ app.post('/api/signup', function(req, res, next) {
 });
 app.post('/api/user/remove', function(req, res, next) {
 
-    //UserDb.findById(req.body.id, function(err, user) {
-    //    res.send(user);
-    //});
-
-
-    id = req.body.id;
-    //id = {"_id": req.body.id};
-    //id = mongoose.Types.ObjectId(req.payload.id);
-
-    UserDb.findByIdAndRemove(id,function(err,doc){
-        res.send({ msg:'error: ' + err });
+    var id = req.body.id;
+    UserDb.findByIdAndRemove(id, function (err, doc) {
+        res.send(doc);
     });
+});
+app.post('/api/user/edit', function(req, res, next) {
 
-    //UserDb.findByIdAndRemove({_id: req.body.id}, {}, options, function(err, result) {
-    //    res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
-    //});
+    var user = new UserDb({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        type: req.body.type
+    });
+    user.update( req.body.id ,function(err) {
+        if (err) return next(err);
+        res.send(200);
+    });
+});
+app.post('/api/user/get', function(req, res, next) {
+
+    var id = req.body.id;
+    UserDb.findById(id, function (err, doc) {
+        res.send(doc);
+    });
 });
 
 app.get('/api/logout', function(req, res, next) {
