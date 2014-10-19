@@ -82,18 +82,27 @@ app.post('/api/user/remove', function(req, res, next) {
 });
 app.post('/api/user/edit', function(req, res, next) {
 
-    var user = new UserDb({
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        type: req.body.type
+    var id = req.body.id;
+
+    UserDb.findById(id, function (err, user) {
+        if (err)
+            res.send(500, { message: err.message });;
+
+        user.username = req.body.username;
+        user.email = req.body.email;
+        user.firstName = req.body.firstName;
+        user.lastName = req.body.lastName;
+        user.type = req.body.type;
+
+        if(req.body.password)
+            user.password = req.body.password;
+
+        user.save(function (err) {
+            if (err) return next(err);
+            res.send(200);
+        });
     });
-    user.update( req.body.id ,function(err) {
-        if (err) return next(err);
-        res.send(200);
-    });
+
 });
 app.post('/api/user/get', function(req, res, next) {
 

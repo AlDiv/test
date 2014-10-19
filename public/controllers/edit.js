@@ -2,10 +2,6 @@ angular.module('MyApp')
     .controller('EditCtrl', ['$scope', '$routeParams', 'User', 'People', function($scope, $routeParams, User, People) {
 
         $scope.headingTitle = 'User edit';
-        $scope.users = User.query();
-
-        var uId = $routeParams.id;
-        var usr = People.getById({id: uId});
 
         $scope.options = [
             {
@@ -18,10 +14,14 @@ angular.module('MyApp')
             }
         ];
 
+        var uId = $routeParams.id;
+        People.getById({id: uId}, $scope.options);
+
         $scope.edit = function() {
-            Auth.signup({
-                id: $scope.id,
-                type: $scope.type,
+
+            People.edit({
+                id: $scope._id,
+                type: $scope.type.value,
                 username: $scope.username,
                 password: $scope.password,
                 email: $scope.email,

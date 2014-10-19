@@ -19,13 +19,14 @@ angular.module('MyApp')
                     });
                 },
                 edit: function(user) {
+
                     return $http.post('/api/user/edit', user)
                         .success(function() {
+
                             $location.path('/list');
 
                             $alert({
-                                title: 'Success!',
-                                content: 'User has been changed.',
+                                content: user.firstName + ' ' + user.lastName + " has been updated",
                                 placement: 'top-right',
                                 type: 'success',
                                 duration: 3
@@ -34,22 +35,23 @@ angular.module('MyApp')
                         .error(function(response) {
                             $alert({
                                 title: 'Error!',
-                                content: response.data,
+                                content: response.message,
                                 placement: 'top-right',
                                 type: 'danger',
                                 duration: 3
                             });
                         });
                 },
-                getById: function(uid) {
+                getById: function(uid, options) {
                     return $http.post('/api/user/get', uid)
                         .success(function(data) {
                             $rootScope.username = data.username;
                             $rootScope.email = data.email;
                             $rootScope.firstName = data.firstName;
                             $rootScope.lastName = data.lastName;
-                            $rootScope.type = data.type?1:0;
                             $rootScope._id = data._id;
+
+                            $rootScope.type = options[data.type?1:0];
                         })
                         .error(function(response) {
                         });
