@@ -1,6 +1,6 @@
 angular.module('MyApp')
-    .factory('People', ['$http', '$location', '$rootScope', '$cookieStore', '$alert',
-        function($http, $location, $rootScope, $cookieStore, $alert) {
+    .factory('People', ['$http', '$location', '$rootScope', '$cookieStore', '$alert', '$resource',
+        function($http, $location, $rootScope, $cookieStore, $alert, $resource) {
             $rootScope.currentUser = $cookieStore.get('user');
             $cookieStore.remove('user');
 
@@ -55,6 +55,9 @@ angular.module('MyApp')
                         })
                         .error(function(response) {
                         });
+                },
+                users: function() {
+                    return $resource('/api/users');
                 }
             };
         }]);

@@ -1,5 +1,5 @@
 angular.module('MyApp')
-    .controller('EditCtrl', ['$scope', '$routeParams', 'User', 'People', function($scope, $routeParams, User, People) {
+    .controller('EditCtrl', ['$scope', '$routeParams', 'People', function($scope, $routeParams, People) {
 
         $scope.headingTitle = 'User edit';
 
